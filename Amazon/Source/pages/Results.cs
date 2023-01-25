@@ -15,7 +15,6 @@ namespace Amazon_test.Source.pages
         {
             ItemsList = new List<Item>();
             this.driver = driver;
-
         }
 
         public IList<Item> GetRustsBy(Dictionary<string, string> filters)
@@ -52,36 +51,22 @@ namespace Amazon_test.Source.pages
                     default:
                         break;
                 }
-
-
-
-
-
             }
-                full_xPath += "]";
-
+            full_xPath += "]";
             title_xpath = "//child::*[contains(@*,'a-size-medium a-color-base a-text-normal')]";
             price_xpath = "//child::span[@class='a-offscreen']";
             url_xpath = "//child::*[contains(@class,'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal')]";
-
             this.allElements = driver.FindElements(By.XPath(full_xPath)).ToList<IWebElement>();
 
             foreach (IWebElement element in allElements)
             {
-                //Console.WriteLine(element.Text);
                 title = element.FindElement(By.XPath(title_xpath)).Text;
-                //Console.WriteLine(title);
                 url = element.FindElement(By.XPath(url_xpath)).GetAttribute("href");
-
                 price = element.FindElement(By.XPath(price_xpath)).Text;
-                Console.WriteLine("price: " + price);
-
-                //Console.WriteLine(title, url, price);
                 Item = new Item(title, price, url);
                 ItemsList.Add(Item);
             }
             return ItemsList;
-            
         }
     }
 }

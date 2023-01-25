@@ -8,7 +8,6 @@ namespace Amazon_test.Tests
     class GetListPrud
     {
         private BrowserFactory factoryDrivers;
-        private IWebDriver driver;
         private IDictionary<string, IWebDriver> drivers;
         private IList <Item> items = new List<Item>();
 
@@ -29,7 +28,6 @@ namespace Amazon_test.Tests
         [Test]
         public void sreachPruds()
         {
-
             foreach (var driver in drivers.Values)
             {
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
@@ -43,13 +41,10 @@ namespace Amazon_test.Tests
                 Amazon.Pages.Home.SearchBar.Text = "mouse";
                 Amazon.Pages.Home.SearchBar.Click();
                 items = Amazon.Pages.Results.GetRustsBy(query);
-                Console.WriteLine(items[0].price);
+                Console.WriteLine(items[0].title);
                 Console.WriteLine(items.Count);
                 Assert.IsNotNull(items);
-
-
             }
-
         }
 
         [TearDown]

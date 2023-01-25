@@ -12,7 +12,6 @@ namespace Amazon_test.Source.pages
         public string title { get; set; }
         public string price { get; set; }
         public string url { get; set; }
-
         IWebElement item;
 
 
