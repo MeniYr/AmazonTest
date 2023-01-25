@@ -9,11 +9,9 @@ namespace Amazon_test.Source.pages
 {
     class Item
     {
-        public string Title { get; set; }
-        public string Price { get; set; }
-        public string title;
-        public string price;
-        public string url;
+        public string title { get; set; }
+        public string price { get; set; }
+        public string url { get; set; }
 
         IWebElement item;
 
@@ -23,8 +21,6 @@ namespace Amazon_test.Source.pages
             this.title = title;
             this.price = price; 
             this.url = url;
-        //    Price = item.FindElement(By.XPath(childTitleXpath)).Text;
-         //   Title = item.FindElement(By.ClassName(childPriceXpath)).Text;
         }
 
     }

@@ -69,8 +69,8 @@ namespace Amazon_test.utiils
         {
             foreach (var key in Drivers.Keys)
             {
-               // Drivers[key].Close();
-               // Drivers[key].Quit();
+                Drivers[key].Close();
+                Drivers[key].Quit();
             }
         }
     }

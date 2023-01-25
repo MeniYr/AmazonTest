@@ -20,7 +20,8 @@ namespace Amazon_test.Tests
             if (!drivers.ContainsKey("Chrome"))
             {
                 factoryDrivers.InitBrowser("Chrome");
-                factoryDrivers.LoadApplication("https://www.amazon.com/");
+              //factoryDrivers.InitBrowser("Firefox");
+                factoryDrivers.LoadApplication("https://www.amazon.com/ref=nav_logo?language=en_US");
             }
         }
 
@@ -36,12 +37,14 @@ namespace Amazon_test.Tests
                 Amazon Amazon = new Amazon(driver);
                 Dictionary<string, string> query = new Dictionary<string, string>();
                 query.Add("price_lower_then", "40");
-                query.Add("price_higher_or_equal", "30");
-                query.Add("free_shipping", "FREE");
+                query.Add("price_higher_or_equal", "10");
+                //query.Add("free_shipping", "FREE");
 
                 Amazon.Pages.Home.SearchBar.Text = "mouse";
                 Amazon.Pages.Home.SearchBar.Click();
                 items = Amazon.Pages.Results.GetRustsBy(query);
+                Console.WriteLine(items[0].price);
+                Console.WriteLine(items.Count);
                 Assert.IsNotNull(items);
 
 

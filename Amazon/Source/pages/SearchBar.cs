@@ -12,7 +12,7 @@ namespace Amazon_test.Source.pages
     {
         public Results results;
         private IWebDriver driver;
-        private IWebElement click;
+        private IWebElement submit;
         private IWebElement input;
 
 
@@ -26,9 +26,11 @@ namespace Amazon_test.Source.pages
         public void Click()
         {
             input = driver.FindElement(By.Id("twotabsearchtextbox"));
+            input.Click();
             input.SendKeys(Text);
-            click = driver.FindElement(By.Id("nav-search-submit-button"));
-            click.Click();
+
+            submit = driver.FindElement(By.Id("nav-search-submit-button"));
+            submit.Click();
         }
 
 
