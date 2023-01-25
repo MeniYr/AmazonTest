@@ -10,7 +10,7 @@ namespace Amazon_test.Tests
         private BrowserFactory factoryDrivers;
         private IWebDriver driver;
         private IDictionary<string, IWebDriver> drivers;
-        private List <Item> items = new List<Item>();
+        private IList <Item> items = new List<Item>();
 
         [SetUp]
         public void init()
@@ -35,8 +35,8 @@ namespace Amazon_test.Tests
 
                 Amazon Amazon = new Amazon(driver);
                 Dictionary<string, string> query = new Dictionary<string, string>();
-                query.Add("price_lower_then", "30");
-                query.Add("price_higher_or_equal", "40");
+                query.Add("price_lower_then", "40");
+                query.Add("price_higher_or_equal", "30");
                 query.Add("free_shipping", "FREE");
 
                 Amazon.Pages.Home.SearchBar.Text = "mouse";
