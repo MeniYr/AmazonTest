@@ -26,8 +26,11 @@ namespace Amazon_test.Source.pages
             string free_shipingXpath = " and ancestor::div[@class ='a-section a-spacing-small a-spacing-top-small' and  contains(. , 'FREE Shipping')  ]";
             string full_higher_or_equal;
             string full_lower;
+            string wholePrice;
+            string fractionPrice;
             string title;
-            string price;
+            string wholePrice_xpath;
+            string fractionPrice_xpath;
             string url;
             
             foreach (var filter in filters)
@@ -52,18 +55,20 @@ namespace Amazon_test.Source.pages
                         break;
                 }
             }
-            full_xPath += "]";
-            title_xpath = "//child::*[contains(@*,'a-size-medium a-color-base a-text-normal')]";
-            price_xpath = "//child::span[@class='a-offscreen']";
-            url_xpath = "//child::*[contains(@class,'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal')]";
+            full_xPath += "]/ancestor::div[@class = 'a-section a-spacing-small a-spacing-top-small']";
+            title_xpath = ".//span[@class ='a-size-medium a-color-base a-text-normal']";
+            wholePrice_xpath = ".//span[@class='a-price-whole']";
+            fractionPrice_xpath = ".//span[@class='a-price-fraction']";
+            url_xpath = ".//*[contains(@class,'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal')]";
             this.allElements = driver.FindElements(By.XPath(full_xPath)).ToList<IWebElement>();
 
             foreach (IWebElement element in allElements)
             {
                 title = element.FindElement(By.XPath(title_xpath)).Text;
                 url = element.FindElement(By.XPath(url_xpath)).GetAttribute("href");
-                price = element.FindElement(By.XPath(price_xpath)).Text;
-                Item = new Item(title, price, url);
+                wholePrice = element.FindElement(By.XPath(wholePrice_xpath)).Text;
+                fractionPrice = element.FindElement(By.XPath(fractionPrice_xpath)).Text;
+                Item = new Item(title, wholePrice + "." + fractionPrice, url);
                 ItemsList.Add(Item);
             }
             return ItemsList;

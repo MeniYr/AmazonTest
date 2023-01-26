@@ -41,8 +41,9 @@ namespace Amazon_test.Tests
                 Amazon.Pages.Home.SearchBar.Text = "mouse";
                 Amazon.Pages.Home.SearchBar.Click();
                 items = Amazon.Pages.Results.GetRustsBy(query);
-                Console.WriteLine(items[0].title);
-                Console.WriteLine(items.Count);
+                Console.Write("title: {0} \nprice: {1} \nurl: {2}\n", items[0].title, items[0].price, items[0].url);
+                Console.Write("title: {0} \nprice: {1} \nurl: {2}", items[1].title, items[1].price, items[1].url);
+
                 Assert.IsNotNull(items);
             }
         }
