@@ -1,11 +1,8 @@
-﻿using Amazon_test.Source;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 
 namespace Amazon_test.Source
 {
-
-
     class Amazon
     {
         private IWebDriver driver;
@@ -14,7 +11,6 @@ namespace Amazon_test.Source
         {
             this.driver = driver;
         }
-
         public Pages Pages
         {
             get

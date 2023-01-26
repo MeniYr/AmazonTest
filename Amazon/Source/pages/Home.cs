@@ -9,7 +9,7 @@ namespace Amazon_test.Source.pages
 {
     class Home
     {
-        IWebDriver driver;
+        private IWebDriver driver;
         public SearchBar searchBar;
         public Home(IWebDriver driver)
         {

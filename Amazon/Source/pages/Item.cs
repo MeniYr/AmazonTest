@@ -12,14 +12,16 @@ namespace Amazon_test.Source.pages
         public string title { get; set; }
         public string price { get; set; }
         public string url { get; set; }
-        IWebElement item;
-
-
+        private IWebElement item;
         public Item(string title, string price, string url)
         {
             this.title = title;
             this.price = price; 
             this.url = url;
+        }
+        public string ToString()
+        {
+            return  "title: " + title + "\n" + "url: " + url + "\n" + "price:" + price + "\n\n";   
         }
 
     }

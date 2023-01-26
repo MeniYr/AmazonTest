@@ -10,11 +10,9 @@ namespace Amazon_test.utiils
     {
         private readonly IDictionary<string, IWebDriver> Drivers = new Dictionary<string, IWebDriver>();
         private IWebDriver? driver;
-
         public IDictionary<string, IWebDriver> Drivers_dict
         {
             get { return Drivers; }
-
         }
         public IWebDriver Driver
         {
@@ -29,7 +27,6 @@ namespace Amazon_test.utiils
                 driver = value;
             }
         }
-
         public void InitBrowser(string browserName)
         {
             switch (browserName.ToUpper())
@@ -37,7 +34,8 @@ namespace Amazon_test.utiils
                 case "FIREFOX":
                     if (!Drivers.ContainsKey(browserName))
                     {
-                        driver = new FirefoxDriver(); // the driver exe is already on firfox folder
+                        driver = new FirefoxDriver();
+                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                         Drivers.Add("Firefox", driver);
                     }
                     break;
@@ -46,6 +44,7 @@ namespace Amazon_test.utiils
                     if (!Drivers.ContainsKey(browserName))
                     {
                         driver = new EdgeDriver(@"C:\Drivers\edgedriver_win64");
+                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                         Drivers.Add("IE", driver);
                     }
                     break;
@@ -54,17 +53,18 @@ namespace Amazon_test.utiils
                     if (!Drivers.ContainsKey(browserName))
                     {
                         driver = new ChromeDriver("C:\\Drivers\\chromedriver_win32");
+                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                         Drivers.Add("Chrome", driver);
                     }
                     break;
+                default:
+                    throw new ArgumentException("Argument not recognize");
             }
         }
-
         public void LoadApplication(string url)
         {
             driver.Url = url;
         }
-
         public void CloseAllDrivers()
         {
             foreach (var key in Drivers.Keys)
