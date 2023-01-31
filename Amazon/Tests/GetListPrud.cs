@@ -32,13 +32,18 @@ namespace Amazon_test.Tests
         {
             foreach (var driver in drivers.Values)
             {
-                Amazon Amazon = new Amazon(driver);
+                // adding queries to dict 
                 Dictionary<string, string> query = new Dictionary<string, string>();
                 query.Add("price_lower_then", "40");
                 query.Add("price_higher_or_equal", "10");
-                query.Add("free_shipping", "FREE");
+                query.Add("free_shipping", "true");
+                
+                // testing
+                Amazon Amazon = new Amazon(driver);
                 Amazon.Pages.Home.SearchBar.Text = "mouse";
                 Amazon.Pages.Home.SearchBar.Click();
+
+                // items results
                 items = Amazon.Pages.Results.GetRustsBy(query);
                 foreach (var item in items)
                 {

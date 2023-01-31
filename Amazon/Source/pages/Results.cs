@@ -31,6 +31,7 @@ namespace Amazon_test.Source.pages
             string Price_xPath_fill_in = " and translate(., '$,', '') ";
             string Price_xPath_forward = " and parent::span[not (contains(@data-a-strike, 'true'))] ";
             string free_shipingXpath = " and ancestor::div[@class ='a-section a-spacing-small a-spacing-top-small' and  contains(. , 'FREE Shipping')  ]";
+            string not_free_shipingXpath = " and ancestor::div[@class ='a-section a-spacing-small a-spacing-top-small' and not(contains(. , 'FREE Shipping'))  ]";
             string url_xpath = ".//*[contains(@class,'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal')]";
             string title_xpath = ".//span[@class ='a-size-medium a-color-base a-text-normal']";
             string wholePrice_xpath = ".//span[@class='a-price-whole']";
@@ -52,7 +53,7 @@ namespace Amazon_test.Source.pages
                         full_xPath += Price_xPath_fill_in + " >=" + filter.Value + Price_xPath_forward;
                         break;
                     case "free_shipping":
-                        full_xPath += free_shipingXpath;
+                        full_xPath += filter.Value.ToUpper().Equals("TRUE") ? free_shipingXpath : not_free_shipingXpath;
                         break;
                     default:
                         break;
